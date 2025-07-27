@@ -24,14 +24,17 @@ jobs:
           java-version: '17'
           distribution: 'microsoft'
 
-      - name: Build with Maven
-        run: mvn clean install
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew build
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: java-app
-          path: '${{ github.workspace }}/target/*.jar'
+          path: build/libs/*.jar
 
   deploy:
     runs-on: ubuntu-latest
@@ -59,5 +62,5 @@ jobs:
         with:
           app-name: 'community-feed'
           slot-name: 'Production'
-          package: '*.jar'
+          package: build/libs/*.jar
           
