@@ -13,10 +13,13 @@ public class WebConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:5173") // Vite dev 서버 주소
+                        .allowedOrigins(
+                                "http://localhost:5173", // ✅ 로컬 개발용
+                                "https://agreeable-coast-073deca00.2.azurestaticapps.net" // ✅ 실제 배포 프론트 주소
+                        )
                         .allowedMethods("*")
                         .allowedHeaders("*")
-                        .allowCredentials(true);
+                        .allowCredentials(false); // ✅ allowCredentials는 true면 allowedOrigins에 * 못 씀
             }
         };
     }
