@@ -28,3 +28,8 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
+
+tasks.withType<Jar> {
+    archiveBaseName.set("community-feed")
+    archiveVersion.set("") // 생략 가능
+}
