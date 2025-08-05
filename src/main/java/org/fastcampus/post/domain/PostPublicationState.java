@@ -1,4 +1,4 @@
-package org.fastcampus.post.domain.content;
+package org.fastcampus.post.domain;
 
 public enum PostPublicationState {
     PUBLIC,

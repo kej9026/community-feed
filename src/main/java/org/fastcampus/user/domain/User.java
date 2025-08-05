@@ -8,7 +8,7 @@ public class User {
     private final Long id;
     private final UserInfo info;
     private final PositiveIntegerCounter followingCount;
-    private final PositiveIntegerCounter follwerCounter;
+    private final PositiveIntegerCounter followerCounter;
 
     public User(Long id, UserInfo userInfo) {
         if (userInfo==null){
@@ -17,7 +17,7 @@ public class User {
         this.id=id;
         this.info = userInfo;
         this.followingCount = new PositiveIntegerCounter();
-        this.follwerCounter = new PositiveIntegerCounter();
+        this.followerCounter = new PositiveIntegerCounter();
     }
 
     public void follow(User targetUser){
@@ -39,11 +39,11 @@ public class User {
     }
 
     private void increaseFollowerCount(){
-        follwerCounter.increase();
+        followerCounter.increase();
     }
 
     private void decreaseFollowerCount(){
-        follwerCounter.decrease();
+        followerCounter.decrease();
     }
     @Override
     public boolean equals(Object o) {
@@ -62,5 +62,13 @@ public class User {
 
     public Long getId() {
         return id;
+    }
+
+    public int followerCount(){
+        return followerCounter.getCount();
+    }
+
+    public int followingCount(){
+        return followingCount.getCount();
     }
 }
